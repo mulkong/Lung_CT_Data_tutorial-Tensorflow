@@ -21,11 +21,15 @@ test로 분리를 해줄때는 test_label 데이터는 사용하지 않았습니
 > &nbsp;&nbsp;&nbsp; 이 튜토리얼에서는 제공된 CSV파일에 적혀져 있는 mask pixel 값을 참고 안하고 오직 mask된 image로만 label로 참고를 하게 됩니다.<br> 
 
 ## 튜토리얼 코드
+### 2D 이미지
 - Image_mask_tutorial
   - tif 파일을 이용해서 제공된 mask와 image를 numpy_array로 변환하는 튜토리얼 입니다.
-- modelLung_segmentation
-  - [Image_mask_tutorial]에서 변환해준 numpy_array를 이용해서 tf.data.Dataset을 애용해 data pipe-line을 구축하고 numpy_array를 tensor로 변환하여 Model[U-Net]에 넣어주고 최종적으로 test images를 넣어줄때 mask를 자동적으로 씌어주는지 확인하는 코드입니다.
-
+- model_Lung_segmentation
+  - [Image_mask_tutorial] 에서 변환해준 numpy_array를 이용해서 tf.data.Dataset을 애용해 data pipe-line을 구축하고 numpy_array를 tensor로 변환하여 Model[U-Net]에 넣어주고 최종적으로 test images를 넣어줄때 mask를 자동적으로 씌어주는지 확인하는 코드입니다.
+### 3D 이미지
+- NIFTI_preprocessing
+  - 3D 이미지 형식인 NIFTI 파일(nii)을 압축해놓은 nii.gz 데이터를 load하고 시각화 시켜주는 튜토리얼 입니다.
+    - nii 파일을 load할때는 [nibabel](https://nipy.org/nibabel/) 라이브러리를 사용합니다.
 
 #### Training data
 - train Image : 216
