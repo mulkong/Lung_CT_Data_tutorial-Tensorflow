@@ -1,6 +1,5 @@
 # CT Data(.tif)를 이용한 Image Segmentation 튜토리얼
 
-의료영상에서는 많은 확장자들이 존재합니다.<br>
 
 
 ## 참고 사이트(Kaggle)
@@ -15,7 +14,7 @@ dicom 파일과 tiff 파일 모두 의료영상에서 많이 사용하는 확장
 그래서 슬라이스된 2d 이미지를 묶어서 하나의 파일로 만드는 nii로 3d_image로도 데이터셋이 제공이 됩니다.<br>
 
 우리는 이 데이터들을 U-Net 알고리즘을 사용해서 Image Segmentation에 맞게 train을 시켜줍니다.<br>
-또한 제공된 데이터는 train데이터입니다. 이 데이터를 train_test_split를 통해서 train과 valid 그리고 test로 분리를 해주었습니다.<br>
+또한 제공된 데이터는 train데이터입니다.<br이 데이터를 train_test_split를 통해서 train과 valid 그리고 test로 분리를 해주었습니다.<br>
 test로 분리를 해줄때는 test_label 데이터는 사용하지 않았습니다.<br>
 
 > &nbsp;&nbsp;&nbsp; 이 튜토리얼에서는 제공된 CSV파일에 적혀져 있는 mask pixel 값을 참고 안하고 오직 mask된 image로만 label로 참고를 하게 됩니다.<br> 
@@ -30,6 +29,7 @@ test로 분리를 해줄때는 test_label 데이터는 사용하지 않았습니
 - NIFTI_preprocessing
   - 3D 이미지 형식인 NIFTI 파일(nii)을 압축해놓은 nii.gz 데이터를 load하고 시각화 시켜주는 튜토리얼 입니다.
     - nii 파일을 load할때는 [nibabel](https://nipy.org/nibabel/) 라이브러리를 사용합니다.
+    - scikits-images의 [montage](https://scikit-image.org/docs/0.7.0/api/skimage.util.montage.html) 모듈을 사용했습니다.<br> 이 모듈은, 3차원 입력 array에서 동일한 모양의 2차원 이미지의 앙살블을 나타내는 모듈이다.
 
 #### Training data
 - train Image : 216
@@ -47,7 +47,7 @@ test로 분리를 해줄때는 test_label 데이터는 사용하지 않았습니
 
 ```
 |-- train
-      |-- 2d_images # 각각 폴더별로 ID
+      |-- 2d_images # 각각 폴더별 ID
             |--  ID_0000_Z_0142.tif
             |--  ID_0067_Z_0238.tif
             |--  ID_0134_Z_0137.tif
@@ -65,9 +65,13 @@ test로 분리를 해줄때는 test_label 데이터는 사용하지 않았습니
 ```
 
 ## 결과
+### 2D Image에 대한 결과
 ```
 Test loss: 0.028305495157837868
 Test accuracy: 0.9700826
+```
+### 3D Image에 대한 결과
+```
 ```
 <div align="center">
   <img src="./data/result.png">
